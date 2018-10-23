@@ -9,10 +9,12 @@ import { Movie } from '../models/movie';
 export class MovieComponent implements OnInit {
   @Input()
   movie: Movie;
-  constructor() { }
+  constructor() { 
+    console.log(this.movie)
+  }
 
   ngOnInit() {
-    console.log(this.movie)
+    
   }
 
 }

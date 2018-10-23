@@ -5,7 +5,7 @@
       <mat-card-title>{{movie?.title}}</mat-card-title>
       <mat-card-subtitle>{{movie?.release_date}}</mat-card-subtitle>
     </mat-card-header>
-    <img style="max-height: 186px;" mat-card-image src="{{movie?.poster_path}}" alt="{{movie?.title}}">
+    <img style="max-height: 186px;" mat-card-image src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{movie?.poster_path}}" alt="{{movie?.title}}">
     <mat-card-content>
       <p>
         {{movie?.overview}}

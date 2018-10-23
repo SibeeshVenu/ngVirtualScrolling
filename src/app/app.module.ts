@@ -27,6 +27,13 @@ import { HttpModule } from '@angular/http';
     ScrollingModule,
     MatButtonModule, MatCheckboxModule, MatMenuModule, MatCardModule, MatSelectModule
   ],
+  exports: [
+    HttpModule,
+    BrowserModule,
+    AppRoutingModule,
+    ScrollingModule,
+    MatButtonModule, MatCheckboxModule, MatMenuModule, MatCardModule, MatSelectModule
+  ],
   providers: [ MovieService ],
   bootstrap: [AppComponent]
 })
