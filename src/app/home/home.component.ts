@@ -1,25 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import {ScrollDispatchModule} from '@angular/cdk/scrolling';import { DataSource, CollectionViewer } from '@angular/cdk/collections';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
-;
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HomeComponent{
-  ds = new MyDataSource();
+export class HomeComponent {
+  constructor(private movieService: MovieService) {
+  }
+  ds = new MyDataSource(this.movieService);
 }
 
 export class MyDataSource extends DataSource<string | undefined> {
   private length = 100000;
   private pageSize = 100;
-  private cachedData = Array.from<string>({length: this.length});
+  private cachedData = Array.from<string>({ length: this.length });
   private fetchedPages = new Set<number>();
   private dataStream = new BehaviorSubject<(string | undefined)[]>(this.cachedData);
   private subscription = new Subscription();
+
+  constructor(private movieService: MovieService) {
+    super();
+  }
 
   connect(collectionViewer: CollectionViewer): Observable<(string | undefined)[]> {
     this.subscription.add(collectionViewer.viewChange.subscribe(range => {
@@ -48,9 +55,13 @@ export class MyDataSource extends DataSource<string | undefined> {
 
     // Use `setTimeout` to simulate fetching data from server.
     setTimeout(() => {
+      this.movieService.get('https://api.themoviedb.org/3/movie/top_rated?api_key=c412c072676d278f83c9198a32613b0d&language=en-US&page=1')
+        .subscribe((data) => {
+          console.log(data._body);
+        });
       this.cachedData.splice(page * this.pageSize, this.pageSize,
-          ...Array.from({length: this.pageSize})
-              .map((_, i) => `Item #${page * this.pageSize + i}`));
+        ...Array.from({ length: this.pageSize })
+          .map((_, i) => `Item #${page * this.pageSize + i}`));
       this.dataStream.next(this.cachedData);
     }, Math.random() * 1000 + 200);
   }
