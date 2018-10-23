@@ -2,13 +2,13 @@
   <mat-card style="min-height: 500px;" class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{movie?.shortTitle}}</mat-card-title>
-      <mat-card-subtitle>{{movie?.author}}</mat-card-subtitle>
+      <mat-card-title>{{movie?.title}}</mat-card-title>
+      <mat-card-subtitle>{{movie?.release_date}}</mat-card-subtitle>
     </mat-card-header>
-    <img style="max-height: 186px;" mat-card-image src="{{movie?.urlToImage}}" alt="{{movie?.title}}">
+    <img style="max-height: 186px;" mat-card-image src="{{movie?.poster_path}}" alt="{{movie?.title}}">
     <mat-card-content>
       <p>
-        {{movie.description}}
+        {{movie?.overview}}
       </p>
     </mat-card-content>
   </mat-card>
