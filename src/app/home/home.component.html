@@ -1,9 +1,7 @@
-<main class="text-center py-5">
-  <div class="container">
-    <div class="row">
-      <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-        <app-movie *cdkVirtualFor="let movie of ds" [movie]="movie" class="example-item">{{movie || 'Loading...'}}</app-movie>
-      </cdk-virtual-scroll-viewport>
-    </div>
+<div class="container" style="text-align:center">
+  <div class="row">
+    <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+      <app-movie *cdkVirtualFor="let movie of ds" [movie]="movie" class="example-item">{{movie || 'Loading...'}}</app-movie>
+    </cdk-virtual-scroll-viewport>
   </div>
-</main>
+</div>

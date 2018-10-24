@@ -11,6 +11,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MovieComponent } from './movie/movie.component';
 import { MovieService } from './movie.service';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { HttpModule } from '@angular/http';
     BrowserModule,
     AppRoutingModule,
     ScrollingModule,
-    MatButtonModule, MatCheckboxModule, MatMenuModule, MatCardModule, MatSelectModule
+    MatButtonModule, MatCheckboxModule, MatMenuModule, MatCardModule, MatSelectModule, BrowserAnimationsModule
   ],
   exports: [
     HttpModule,
