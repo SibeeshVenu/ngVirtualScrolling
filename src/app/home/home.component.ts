@@ -3,6 +3,7 @@ import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { MovieService } from '../movie.service';
 import { Movie } from '../models/movie';
+import { config } from '../config';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,6 @@ export class HomeComponent {
 }
 
 export class MyDataSource extends DataSource<Movie | undefined> {
-  private page = 1;
   private initialData: Movie[] = [
     {
       id: 19404,
@@ -36,9 +36,7 @@ export class MyDataSource extends DataSource<Movie | undefined> {
 
   connect(collectionViewer: CollectionViewer): Observable<(Movie | undefined)[]> {
     this.subscription.add(collectionViewer.viewChange.subscribe((range) => {
-      console.log(range.start)
-      console.log(range.end)
-      this.movieService.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=c412c072676d278f83c9198a32613b0d&language=en-US&page=1`)
+      this.movieService.get(config.api.topRated)
         .subscribe((data) => {
           this.formatDta(JSON.parse(data._body).results);
         });
