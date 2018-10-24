@@ -5,7 +5,8 @@ import { RequestMethod, RequestOptions, Request, Http } from '@angular/http';
   providedIn: 'root'
 })
 export class MovieService {
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+   }
 
   get(url: string) {
     return this.request(url, RequestMethod.Get)
